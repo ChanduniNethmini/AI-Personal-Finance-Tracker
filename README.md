@@ -114,6 +114,70 @@ Where am I spending the most?
 Give me a summary of this month's expenses
 ```
 
+### Additional Features
+```
+I want to save $500 this month
+Am I on track with my savings goal?
+Oops I logged the wrong expense, delete it
+Compare March and April spending
+```
+
+---
+
+## Additional Features
+
+These features go beyond the core requirements.
+
+### Savings Goal Tracking
+
+Set a monthly savings target and check your progress at any time.
+
+```
+I want to save $500 this April
+Am I on track with my savings goal?
+How close am I to hitting my savings target?
+```
+
+The agent tells you exactly how much you have saved so far, your target, and the shortfall (or confirms you've hit the goal).
+
+### Delete Last Expense
+
+Made a mistake? Undo the last logged expense in one message.
+
+```
+Oops I logged the wrong amount, delete it
+I made a mistake on that last entry, remove it
+```
+
+The agent deletes the most recently added expense and echoes back what was removed so you can confirm.
+
+### Month-over-Month Comparison
+
+Compare two months side by side — every category, total spent, and the change between them.
+
+```
+Compare March and April spending
+How did my spending change from January to February?
+Show me March vs April
+```
+
+Example output:
+```
+Comparison: March 2026 vs April 2026
+--------------------------------------------------------
+                     Mar 2026    Apr 2026      Change
+--------------------------------------------------------
+  Salary           $  3000.00  $  3000.00
+--------------------------------------------------------
+  Dining           $   120.00  $   185.00  +$65.00
+  Groceries        $   210.00  $   175.00  -$35.00
+  Rent             $   900.00  $   900.00   $0.00
+  Transport        $    55.00  $    40.00  -$15.00
+--------------------------------------------------------
+  Total Spent      $  1285.00  $  1300.00  +$15.00
+  Saved            $  1715.00  $  1700.00
+```
+
 ---
 
 ## How It Works
@@ -129,7 +193,7 @@ GPT-4o (with tools list)
      └── Tool call? NO  → return text response to user
 ```
 
-The agent has four tools it can call:
+The agent has eight tools it can call:
 
 | Tool | When it's called |
 |------|-----------------|
@@ -137,6 +201,10 @@ The agent has four tools it can call:
 | `log_expense` | User mentions spending money |
 | `get_balance` | User asks how much is left |
 | `get_expense_summary` | User asks for a breakdown or summary |
+| `set_savings_goal` | User sets a monthly savings target |
+| `check_savings_progress` | User asks if they are on track to save |
+| `delete_last_expense` | User wants to undo the last logged expense |
+| `compare_months` | User asks to compare two months side by side |
 
 ---
 
@@ -161,6 +229,16 @@ The agent has four tools it can call:
 | category | TEXT | e.g. `Groceries`, `Rent`, `Dining` |
 | description | TEXT | Short description |
 | date | TEXT | Date in `YYYY-MM-DD` format |
+| created_at | TEXT | Timestamp |
+
+**`savings_goals` table**
+
+| Column | Type | Description |
+|--------|------|-------------|
+| id | INTEGER | Auto-increment primary key |
+| target_amount | REAL | Monthly savings target |
+| month | TEXT | Month name (e.g. `April`) |
+| year | INTEGER | Year (e.g. `2026`) |
 | created_at | TEXT | Timestamp |
 
 ---
