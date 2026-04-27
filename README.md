@@ -34,7 +34,7 @@ A personal finance assistant that starts with a chat and is powered by an AI age
 ## Project Structure
 
 ```
-assignment1/
+AI-Personal-Finance-Tracker/
 ├── notebooks/
 │   └── financeTracker.ipynb   # Main application notebook
 ├── finance.db                  # SQLite database (auto-created on first run)
