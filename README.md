@@ -51,10 +51,10 @@ assignment1/
 
 ### 2. Set Up environment
 
-uv init
-uv sync
-.venv\Scripts\activate - to activate virtual environment
-uv add -r requirement.txt - to install dependencies
+ 1. uv init
+ 2. uv sync
+ 3. .venv\Scripts\activate - to activate virtual environment
+ 4. uv add -r requirement.txt - to install dependencies
 
 ### Create a `.env` file in the project root and add OpenAI API key:
 
