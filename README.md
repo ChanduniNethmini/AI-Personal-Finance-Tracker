@@ -1,6 +1,6 @@
 # Personal Finance Tracker — AI Agent
 
-A personal finance assistant that starts with a chat and is powered by an AI agent, has tool calling, a persistent SQLite database, and a Gradio UI. Talk to it like you would a friend—no forms, no buttons, just talking.
+A personal finance assistant that starts with a chat and is powered by an AI agent, has tool calling, a persistent SQLite database, and a Gradio UI. Talk to it like you would a friend—no complex process, just talking.
 
 ![Finance Tracker Screenshot](screenshot.png)
 
@@ -8,13 +8,18 @@ A personal finance assistant that starts with a chat and is powered by an AI age
 
 ## Features
 
-- **Natural language interface**—just say "Paid rent $900" and it will log it for you.
-- **Tracking your salary**—set your monthly income and keep an eye on it over time
+- **Natural language interface**—just say "I paid $900 for rent in April" and it will log it for you.
+- **Tracking your salary**—set your monthly income/ salary and keep an eye on it over time
 - **Logging expenses**—log any expense by category with automatic date handling
 - **Check your balance**— You can ask how much you have left at any time.
 - **Spending breakdown** — see a summary of your spending by category with percentages
+- **Persistent storage** — all data is kept in a local db which is SQLite database
+  As special features, 
+- **Delete logged expenses** - you can delete incorrect expenses that already logged just saying,"Delete the expense of $100 for Fuel in May".
+- **Concecative month comparison** - say, compare the expenses that i made on April and May".
 - **Typewriter response effect** — responses come in letter by letter, just like ChatGPT
-- **Persistent storage** — all data is kept in a local SQLite database
+- **Saving Goals tracking** — Tell chat to set your financial goal and it will keep tracking your goal 
+
 
 ---
 
@@ -24,7 +29,7 @@ A personal finance assistant that starts with a chat and is powered by an AI age
 |-----------|------|
 | LLM | OpenAI `gpt-4o` |
 | UI | Gradio |
-| Database | SQLite3 (built-in Python) |
+| Database | SQLite3|
 | Tool Calling | OpenAI function calling |
 | HTTP Client | OpenAI Python SDK |
 | Config | `python-dotenv` |
@@ -36,9 +41,10 @@ A personal finance assistant that starts with a chat and is powered by an AI age
 ```
 AI-Personal-Finance-Tracker/
 ├── notebooks/
+    └── finance.db 
 │   └── financeTracker.ipynb   # Main application notebook
-├── finance.db                  # SQLite database (auto-created on first run)
-├── .env                        # API keys — NOT included in repo
+├── Noob_Dev_CAIEP_L1.ipynb     # Assignment instruction 
+├── .env                        # this should contain OPENAI_API_KEY
 ├── requirement.txt             # Python dependencies
 └── README.md
 ```
@@ -54,7 +60,7 @@ AI-Personal-Finance-Tracker/
  1. uv init
  2. uv sync
  3. .venv\Scripts\activate - to activate virtual environment
- 4. uv add -r requirement.txt - to install dependencies
+ 4. uv add -r requirement.txt - to install all the dependencies
 
 ### Create a `.env` file in the project root and add OpenAI API key:
 
@@ -76,20 +82,20 @@ Or open it directly in VS Code with the Jupyter extension.
 Once the last UI cell runs, you will see:
 
 ```
-Running on local URL: http://127.0.0.1:7860
+Running on local URL(eg: http://127.0.0.1:7860)
 ```
 
 Open that URL in your browser.
 
 ---
 
-## Usage Examples
+## Usage Examples and tools
 
 ### Set your salary
 ```
-My monthly salary is $3,500
-I earn $4,000 a month
-Set my income to 2800
+My monthly salary is $3,500 in January
+I earn $4,000 a month in December
+Set my income  of March to 2800
 ```
 
 ### Log expenses
@@ -149,7 +155,7 @@ Oops I logged the wrong amount, delete it
 I made a mistake on that last entry, remove it
 ```
 
-The agent deletes the most recently added expense and echoes back what was removed so you can confirm.
+The agent deletes the most recently added expense and back what was removed so you can confirm.
 
 ### Month-over-Month Comparison
 
